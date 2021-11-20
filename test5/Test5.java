@@ -91,8 +91,18 @@ public class Test5 {
         System.out.println("使用选排排序法进行排序后的数组(从小到大):");
         sort1(test.a);
         test.print();
-        System.out.println("请在数组中插入任意一个数字:");
-        int num = sc.nextInt();
+        int num;
+        do {
+            System.out.println("请在数组中插入任意一个数字:");
+            if(sc.hasNextInt()) {
+                num = sc.nextInt();
+                break;
+            }
+            else {
+                sc.next();
+                System.out.println("请输入一个数字!");
+            }
+        }while (true);
         test.insert(num);
         System.out.println("使用冒泡排序法进行排序后的数组(从小到大):");
         sort2(test.a);
