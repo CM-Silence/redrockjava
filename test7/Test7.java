@@ -1,7 +1,5 @@
 package RedRock_Android_Java.test7;
 
-import java.util.Scanner;
-
 //work1 level4
 //点餐系统(伪)
 public class Test7 {
