@@ -1,5 +1,4 @@
 package RedRock_Android_Java.test1;
-
 import java.util.Scanner;
 
 //work0 level1
@@ -7,23 +6,36 @@ import java.util.Scanner;
 public class Test1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String e = "";
+        String choose = "";
         int a; //平时成绩
         int b; //期中成绩
         int c; //期末成绩
         do {
             System.out.println("卷王廖姐姐向你发出了内卷邀请!");
-            System.out.println("请输入你的平时成绩:");
-            a = sc.nextInt();
-            System.out.println("请输入你的期中成绩:");
-            b = sc.nextInt();
-            System.out.println("请输入你的期末成绩:");
-            c = sc.nextInt();
-            if (a<0||a>100||b<0||b>100||c<0||c>100) {
-                System.out.println("你输入的成绩不合理，请再输一次!");
-                continue;
-            }
-            int d = (int) (0.2 * a + 0.3 * b + 0.5 * c);
+            do {
+                a = -1;
+                b = -1;
+                c = -1;
+                System.out.println("请输入你的平时成绩:");
+                String a2 = sc.next();
+                if (judge(a2)) {
+                    a = Integer.parseInt(a2);
+                }
+                System.out.println("请输入你的期中成绩:");
+                String b2 = sc.next();
+                if (judge(b2)) {
+                    b = Integer.parseInt(b2);
+                }
+                System.out.println("请输入你的期末成绩:");
+                String c2 = sc.next();
+                if (judge(c2)) {
+                    c = Integer.parseInt(c2);
+                }
+                if (a < 0 || a > 100 || b < 0 || b > 100 || c < 0 || c > 100) {
+                    System.out.println("你输入的成绩不合理，请再输一次!");
+                }
+            }while (a < 0 || a > 100 || b < 0 || b > 100 || c < 0 || c > 100);
+            int d = (int) (0.2 * a + 0.3 * b + 0.5 * c); //计算最终成绩
             if (d > 0 && d < 60) {
                 System.out.println("勇敢俊枭,不怕困难");
             }
@@ -32,12 +44,21 @@ public class Test1 {
             }
             do {
                 System.out.println("是否要再来一局?(yes/no)");
-                e =sc.next();
-                if(!e.equalsIgnoreCase("yes") && !e.equalsIgnoreCase("no")) {
+                choose =sc.next();
+                if(!choose.equalsIgnoreCase("yes") && !choose.equalsIgnoreCase("no")) {
                     System.out.println("请输入yes或者no!");
                 }
-            }while(!e.equalsIgnoreCase("yes") && !e.equalsIgnoreCase("no"));
-        }while(e.equals("yes"));
+            }while(!choose.equalsIgnoreCase("yes") && !choose.equalsIgnoreCase("no"));
+        }while(choose.equals("yes"));
 
+    }
+    static boolean judge(String str){
+        try{
+            Integer.parseInt(str);
+            return true;
+        }
+        catch (Exception ignored){
+            return false;
+        }
     }
 }
