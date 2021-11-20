@@ -17,11 +17,22 @@ public class Test2 {
             double num1 = 1.0;
             double num2 = 1.0;
             do {
+                n = -1;
+                k = -1;
                 System.out.println("请输入n的值:");
-                n = sc.nextInt();
+                if(sc.hasNextInt()) {
+                    n = sc.nextInt();
+                }
+                else{
+                    sc.next();
+                }
                 System.out.println("请输入k的值:");
-                k = sc.nextInt();
-
+                if(sc.hasNextInt()) {
+                    k = sc.nextInt();
+                }
+                else{
+                    sc.next();
+                }
                 if (k > n || k < 0 || n < 0) {
                     System.out.println("你输入的数据不合理!");
                 }
