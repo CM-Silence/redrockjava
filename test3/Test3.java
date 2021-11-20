@@ -17,9 +17,10 @@ public class Test3 {
 
         String xz; //记录用户要进行的操作
         main:do {
-            System.out.println("欢迎使用学生信息数据库(伪)!\n请选择你要进行的操作\n1:查看学生信息\n2:导入学生信息\n3:删除学生信息\n4:修改学生信息\n输入其他信息:结束该程序");
+            System.out.println("欢迎使用学生信息数据库(伪)!\n请选择你要进行的操作\n1:查看学生信息\n2:导入学生信息\n3:删除学生信息\n4:修改学生信息\n5:退出本系统");
             xz = sc.next();
-            switch (xz) {
+            choose:switch (xz) {
+                //查看学生信息
                 case ("1") -> {
                     for (int i = 1; i < students.length; i++) {
                         for (int j = 0; j < students.length; j++) {
@@ -46,66 +47,111 @@ public class Test3 {
                         }
                     }
                 }
+                //录入学生信息
                 case ("2") -> {
-                    System.out.println("请输入需要录入的学生的学号:");
-                    String xh1 = sc.next();
+                    String xh1;
+                    do {
+                        System.out.println("请输入需要录入的学生的学号:");
+                        if (sc.hasNextInt()) {
+                            xh1 = sc.next();
+                            break;
+                        }
+                        else {
+                            sc.next();
+                            System.out.println("输入的学号不合理!");
+                        }
+                    }while (true);
                     System.out.println("请输入需要录入的学生的姓名:");
                     String xm = sc.next();
 
-                    //进入a循环
-                    a:
                     for (int i = 0; i < students.length; i++) {
                         for (int j = 0; j < students[i].length; j++) {
                             if (students[i][0] == null && students[i][1] == null) {
                                 students[i][0] = xh1;
                                 students[i][1] = xm;
                                 System.out.println("学生信息录入完毕!");
-                                break a; //退出a循环
+                                break choose; //退出switch语句
                             }
                         }
                     }
                 }
+                //删除学生信息
                 case ("3") -> {
-                    System.out.println("请输入需要删除的学生的学号:");
-                    String xh2 = sc.next();
-                    //进入b循环
-                    b:
+                    String xh2;
+                    do {
+                        System.out.println("请输入需要删除的学生的学号:");
+                        if (sc.hasNextInt()) {
+                            xh2 = sc.next();
+                            break;
+                        }
+                        else {
+                            sc.next();
+                            System.out.println("输入的学号不合理!");
+                        }
+                    }while (true);
+
                     for (int i = 0; i < students.length; i++) {
                         for (int j = 0; j < students[i].length; j++) {
                             if (Objects.equals(students[i][0], xh2)) {
                                 System.out.println(students[i][1] + "同学的信息已删除!");
                                 students[i][0] = null;
                                 students[i][1] = null;
-                                break b; //退出b循环
+                                break choose; //退出switch语句
                             }
                         }
                     }
+                    System.out.println("找不到该学生,请输入正确的学号!");
                 }
-
+                //修改学生信息
                 case ("4") -> {
-                    System.out.println("请输入需要修改的学生的原学号:");
-                    String xh3 = sc.next();
-                    System.out.println("请输入需要修改的学生的新学号:");
-                    String new_xh = sc.next();
+                    String xh3;
+                    do {
+                        System.out.println("请输入需要修改的学生的原学号:");
+                        if (sc.hasNextInt()) {
+                            xh3 = sc.next();
+                            break;
+                        }
+                        else {
+                            sc.next();
+                            System.out.println("输入的学号不合理!");
+                        }
+                    }while (true);
+                    String new_xh;
+                    do {
+                        System.out.println("请输入需要修改的学生的新学号:");
+                        if (sc.hasNextInt()) {
+                            new_xh = sc.next();
+                            break;
+                        }
+                        else {
+                            sc.next();
+                            System.out.println("输入的学号不合理!");
+                        }
+                    }while (true);
                     System.out.println("请输入需要修改的学生的新姓名:");
                     String new_xm = sc.next();
-                    //进入c循环
-                    c:
+
                     for (int i = 0; i < students.length; i++) {
                         for (int j = 0; j < students[i].length; j++) {
                             if (Objects.equals(students[i][0], xh3)) {
                                 students[i][0] = new_xh;
                                 students[i][1] = new_xm;
                                 System.out.println("学生信息已修改!");
-                                break c; //退出c循环
+                                break choose; //退出switch语句
                             }
                         }
                     }
+                    System.out.println("找不到该学生,请输入正确的学号!");
                 }
-                default -> {
+                //退出
+                case ("5") -> {
                     break main; //退出程序
                 }
+                //输入有误
+                default -> {
+                    System.out.println("请输入在1-5之间的五个数字!");
+                }
             }
-        }while(!xz.equals("1")||!xz.equals("2")||!xz.equals("3")||!xz.equals("4"));
+        }while(true);
     }
 }
