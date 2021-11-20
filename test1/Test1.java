@@ -52,6 +52,8 @@ public class Test1 {
         }while(choose.equals("yes"));
 
     }
+
+    //用于判断输入的信息是否能转换为数字
     static boolean judge(String str){
         try{
             Integer.parseInt(str);
