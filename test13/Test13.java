@@ -61,23 +61,23 @@ public class Test13 {
         enemy.attack(dodge);
     }
 
-    //用于判断输入的内容是否为数字并赋值给参数的方法
+    //用于判断输入的内容是否为非负整数并赋值给参数的方法
     public static int judge(){
         Scanner sc = new Scanner(System.in);
         int num;
         do {
             if(sc.hasNextInt()) {
                 num = sc.nextInt();
-                if(num > 0) {
+                if(num >= 0) {
                     break;
                 }
                 else{
-                    System.out.println("请输入一个正整数!");
+                    System.out.println("请输入一个非负整数!");
                 }
             }
             else{
                 sc.next();
-                System.out.println("请输入一个正整数!");
+                System.out.println("请输入一个非负整数!");
             }
         }while (true);
         return num;
