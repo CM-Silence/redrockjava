@@ -5,7 +5,6 @@ import  java.util.Scanner;
 //灵活的波吉王子(匿名类,伪链表,构造器,内部静态类)
 public class Test13 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
         DodgeLv1 dodge = new DodgeLv1.Builder().add(new DodgeLv1(){
 
@@ -57,9 +56,31 @@ public class Test13 {
         }).build();
 
         System.out.println("请输入敌人的攻击力(王子防御力为100):");
-        int attack = sc.nextInt();
+        int attack = judge();
         Enemy enemy = new Enemy(attack);
         enemy.attack(dodge);
+    }
+
+    //用于判断输入的内容是否为数字并赋值给参数的方法
+    public static int judge(){
+        Scanner sc = new Scanner(System.in);
+        int num;
+        do {
+            if(sc.hasNextInt()) {
+                num = sc.nextInt();
+                if(num > 0) {
+                    break;
+                }
+                else{
+                    System.out.println("请输入一个正整数!");
+                }
+            }
+            else{
+                sc.next();
+                System.out.println("请输入一个正整数!");
+            }
+        }while (true);
+        return num;
     }
 }
 
