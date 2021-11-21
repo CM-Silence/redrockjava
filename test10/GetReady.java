@@ -29,7 +29,7 @@ public class GetReady {
 
         do {
             System.out.println("请输入英雄生命值(1-9999):");
-                initialHealth = sc.nextInt();
+                initialHealth = judge();
             if(initialHealth < 1 || initialHealth > 9999){
                 System.out.println("输入的数据不合理!");
             }
@@ -37,7 +37,7 @@ public class GetReady {
 
         do {
             System.out.println("请输入英雄攻击力(1-999):");
-            initialDamage = sc.nextInt();
+            initialDamage = judge();
             if(initialDamage < 1 || initialDamage > 999){
                 System.out.println("输入的数据不合理!");
             }
@@ -45,7 +45,7 @@ public class GetReady {
 
         do {
             System.out.println("请输入英雄防御力(1-999):");
-            initialDefense = sc.nextInt();
+            initialDefense = judge();
             if(initialDefense < 1 || initialDefense > 999){
                 System.out.println("输入的数据不合理!");
             }
@@ -53,7 +53,7 @@ public class GetReady {
 
         do {
             System.out.println("请输入英雄暴击率(0-100):");
-            initialCriticalChance = sc.nextInt();
+            initialCriticalChance = judge();
             if(initialCriticalChance < 0 || initialCriticalChance > 100){
                 System.out.println("输入的数据不合理!");
             }
@@ -63,7 +63,7 @@ public class GetReady {
         //输入一个基础值,对于不同兵种这些基础值会以一定比例发生变化
         do {
             System.out.println("请输入敌人基础生命值(1-999):");
-            initialEnemyHealth = sc.nextInt();
+            initialEnemyHealth = judge();
             if(initialEnemyHealth < 1 || initialEnemyHealth > 999){
                 System.out.println("输入的数据不合理!");
             }
@@ -71,7 +71,7 @@ public class GetReady {
 
         do {
             System.out.println("请输入敌人基础攻击力(1-999):");
-            initialEnemyDamage = sc.nextInt();
+            initialEnemyDamage = judge();
             if(initialEnemyDamage < 1 || initialEnemyDamage > 999){
                 System.out.println("输入的数据不合理!");
             }
@@ -118,29 +118,26 @@ public class GetReady {
                     System.out.println("请输入合理的序号!");
                 }
             }while (!answer.equals("1") && !answer.equals("2") && !answer.equals("3") && !answer.equals("4") && !answer.equals("5") && !answer.equals("6"));
-            switch (answer){
-                case "1" :{
+            switch (answer) {
+                case "1" -> {
                     enemyNum = ra.nextInt(GetReady.enemies.length);
                     hero.attack(enemies[enemyNum]);
-                    break;
                 }
-                case "2" :{
+                case "2" -> {
                     hero.multipleHit();
-                    break;
                 }
-                case "3" :{
+                case "3" -> {
                     hero.precisionStrike();
-                    break;
                 }
-                case "4" :{
+                case "4" -> {
                     hero.shop();
                     continue;
                 }
-                case "5" :{
+                case "5" -> {
                     hero.check();
                     continue;
                 }
-                case "6" :{
+                case "6" -> {
                     hero.setHealth(0);
                     System.out.println("你投降了!");
                     break outer;
@@ -186,5 +183,22 @@ public class GetReady {
         else {
             System.out.println("你击败了所有敌人，游戏胜利!");
         }
+    }
+
+    //用于判断输入的内容是否为数字并赋值给参数的方法
+    public static int judge(){
+        Scanner sc = new Scanner(System.in);
+        int num;
+        do {
+            if(sc.hasNextInt()) {
+                num = sc.nextInt();
+                    break;
+            }
+            else{
+                sc.next();
+                System.out.println("请输入一个数字!");
+            }
+        }while (true);
+        return num;
     }
 }
