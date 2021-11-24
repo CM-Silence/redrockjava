@@ -108,7 +108,9 @@ public class Calculator {
 
     //先把被括号括着的内容算出来
     public static void calculate(String formula){
+        formula = formula.replaceAll(Double.toString(2 * Math.asin(1)),"pi");
         System.out.println("  " + formula); //先把原式显示出来
+        formula = formula.replaceAll("pi",Double.toString(2 * Math.asin(1)));
         temp1 = 0; //重置
         temp2 = 0;
         //先算小括号(反复执行直到把所有小括号内的算式都算完(从左到右算))
