@@ -22,23 +22,25 @@ class Boss extends Enemy {
             int skillRelease = ra.nextInt(1, 100);
 
             if (skillRelease <= skillReleaseProbability / 2) {
-                this.setOnceDamage((int) (this.getDamage() * 5.0 * (100 / (person.getDefense() + 100))));
+                this.setOnceDamage((int) (this.getDamage() * 5.0));
                 person.setHealth(person.getHealth() - this.getOnceDamage());
-                System.out.println(this.getName() + "使用*最终审判*对" + person.getName() + "造成了" + this.getOnceDamage() + "点伤害!");
+                System.out.println(this.getName() + "使用*最终审判*对" + person.getName() + "造成了" + this.getOnceDamage() + "点真实伤害!");
+                this.critical(person);
             }
             else if(skillRelease > skillReleaseProbability / 2 && skillRelease <= skillReleaseProbability) {
                 for(int i = 0; i < 5; i++) {
                     this.setOnceDamage((int) (this.getDamage() * (1.0 + i * 0.4) * (100 / (person.getDefense() + 100))));
                     person.setHealth(person.getHealth() - this.getOnceDamage());
                     System.out.println(this.getName() + "使用*毁灭风暴*对" + person.getName() + "造成了" + this.getOnceDamage() + "点伤害!");
+                    this.critical(person);
                 }
             }
             else{
-                this.setOnceDamage((int) (this.getDamage()));
+                this.setOnceDamage((int) (this.getDamage() * (100 / (person.getDefense() / 3 + 100))));
                 person.setHealth(person.getHealth() - this.getOnceDamage());
-                System.out.println(this.getName() + "使用灵魂打击对" + person.getName() + "造成了" + this.getOnceDamage() + "点真实伤害!");
+                System.out.println(this.getName() + "使用灵魂打击对" + person.getName() + "造成了" + this.getOnceDamage() + "点伤害!");
+                this.critical(person);
             }
-            this.critical(person);
             System.out.println(person.getName() + "目前的生命值为:" + person.getHealth());
             //如果英雄血量大于0则会反击
             if(person.getHealth() > 0){
