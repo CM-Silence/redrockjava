@@ -58,7 +58,7 @@ public class GetReady {
         //我方英雄
         hero = new Hero(name, initialHealth, initialDamage, initialDefense, initialCriticalChance);
         //最终boss(攻击力会随着英雄的生命和防御的提高而提高,且具有10000的初始值,保证能秒杀英雄)
-        boss = new Boss("最终Boss—纳什男爵", 50000, (int) ((hero.getHealth() + 1000) * (100 + hero.getDefense())), 9999, 1200, 50, 70, 80);
+        boss = new Boss("最终Boss—纳什男爵", 50000, (int) ((hero.getHealth() + 1000) * (100 + hero.getDefense())), 9999, 1200, 50, 70);
     }
     public void begin(){
         System.out.println("纳什男爵:" + hero.getName() + "!你之前击败了我的手下,但是你的好运到头了!\n这次就让你看看我的真正实力!");

@@ -6,7 +6,7 @@ import java.util.Scanner;
 //回合制小游戏破解版(反射)
 public class Hack {
     static Scanner sc = new Scanner(System.in);
-    //static String choose;
+    static String choose;
     //static String className;
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException {
 
@@ -24,15 +24,76 @@ public class Hack {
         Class<?> person = Class.forName("RedRock_Android_Java.test16.Person"); //找到Person类
         Class<?> getReady = Class.forName("RedRock_Android_Java.test16.GetReady"); //GetReady类
         Constructor<?> beginConstructor = getReady.getDeclaredConstructor(); //GetReady类的构造器
-        Object getReadyInstance = beginConstructor.newInstance(); //创建一个GetReady类的对象
-        Method start = getReady.getDeclaredMethod("begin",RedRock_Android_Java.test16.Hero.class); //找到GetReady类的方begin方法
+        Object getReadyInstance = beginConstructor.newInstance(); //用构造器创建一个GetReady类的对象
+        Method start = getReady.getDeclaredMethod("begin"); //找到GetReady类的方begin方法
         Method ready = getReady.getDeclaredMethod("ready"); //找到GetReady类的方ready方法
-        Object hero = ready.invoke(getReadyInstance); //创建一个对象hro,并将ready方法的返回值(一个Hero类对象)赋值给他
-        Field damage = person.getDeclaredField("damage"); //找到Person类的私有成员变量damage(伤害)
-        damage.setAccessible(true); //用setAccessible(true)来跳过私有检测
-        damage.set(hero,99999999); //直接修改对象h(英雄)的damage属性(私有)
-        damage.setAccessible(false); //修改完后弄回去(你不弄也行)
-        start.invoke(getReadyInstance,hero); //开始游戏
+        System.out.println("----------------------hack---------------------");
+        ready.invoke(getReadyInstance); //调用GetReady类的ready方法
+        Field hero = getReady.getDeclaredField("hero"); //找到GetReady类的hero对象
+        hero.setAccessible(true); //用setAccessible(true)来跳过私有检测(虽然hero本来也不是私有的)
+        Object obj = hero.get(getReadyInstance); //得到hero变量所对应的的对象并将其赋值给obj
+
+        //取得Person类的各个成员变量并用setAccessible(true)来跳过私有检测
+        Field health = person.getDeclaredField("health");
+        health.setAccessible(true);
+        Field damage = person.getDeclaredField("damage");
+        damage.setAccessible(true);
+        Field defense = person.getDeclaredField("defense");
+        defense.setAccessible(true);
+        Field criticalChance = person.getDeclaredField("criticalChance");
+        criticalChance.setAccessible(true);
+
+        outer:do{
+            System.out.println("hack:欢迎使用本修改器,请选择你要修改的内容:\n1.角色生命\n2.角色攻击力\n3.角色防御力\n4.角色暴击率\n5.开启一击必杀模式\n6.开始游戏");
+            choose = sc.nextLine();
+
+            switch (choose){
+                case "1" ->{
+                    System.out.println("hack:当前角色生命为:" + health.get(obj) + "\n请输入你要修改的值:");
+                    health.set(obj,judge());
+                }
+                case "2" ->{
+                    System.out.println("hack:当前角色攻击为:" + damage.get(obj) + "\n请输入你要修改的值:");
+                    damage.set(obj,judge());
+                }
+                case "3" ->{
+                    System.out.println("hack:当前角色防御为:" + defense.get(obj) + "\n请输入你要修改的值:");
+                    defense.set(obj,judge());
+                }
+                case "4" ->{
+                    System.out.println("hack:当前角色暴击率为:" + criticalChance.get(obj) + "\n请输入你要修改的值:");
+                    criticalChance.set(obj,judge());
+                }
+                case "5" ->{
+                    System.out.println("hack:已开启一击必杀模式,请开始游戏吧!");
+                    damage.set(obj,99999999);
+                    criticalChance.set(obj,99999999);
+                }
+                case "6" ->{
+                    break outer;
+                }
+                default -> System.out.println("hack:无法识别你的操作!");
+
+            }
+        }
+        while (true);
+        start.invoke(getReadyInstance); //开始游戏,虐杀boss
+    }
+
+    public static double judge(){
+        Scanner sc = new Scanner(System.in);
+        double num;
+        do {
+            if(sc.hasNextDouble()|| sc.hasNextInt()) {
+                num = sc.nextInt();
+                break;
+            }
+            else{
+                sc.next();
+                System.out.println("请输入一个数字!");
+            }
+        }while (true);
+        return num;
     }
 
 }

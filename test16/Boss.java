@@ -7,14 +7,11 @@ class Boss extends Enemy {
     //boss释放技能的概率
     private final int skillReleaseProbability;
 
-    //boss技能对角色防御力的削弱程度
-    private final double degreeOfWeakening;
     Random ra = new Random();
 
-    Boss(String name, double health, double damage, int coin, double defence, double criticalChance, int skillReleaseProbability, double degreeOfWeakening) {
+    Boss(String name, double health, double damage, int coin, double defence, double criticalChance, int skillReleaseProbability) {
         super(name, health, damage, coin, defence, criticalChance);
         this.skillReleaseProbability = skillReleaseProbability;
-        this.degreeOfWeakening = degreeOfWeakening;
     }
 
     @Override
@@ -24,12 +21,12 @@ class Boss extends Enemy {
             //获取一个随机数,用于判断boss是否会释放技能
             int skillRelease = ra.nextInt(1, 100);
 
-            if (skillRelease <= skillReleaseProbability/5) {
+            if (skillRelease <= skillReleaseProbability / 2) {
                 this.setOnceDamage((int) (this.getDamage() * 5.0 * (100 / (person.getDefense() + 100))));
                 person.setHealth(person.getHealth() - this.getOnceDamage());
                 System.out.println(this.getName() + "使用*最终审判*对" + person.getName() + "造成了" + this.getOnceDamage() + "点伤害!");
             }
-            else if(skillRelease > skillReleaseProbability/5 && skillRelease <= skillReleaseProbability) {
+            else if(skillRelease > skillReleaseProbability / 2 && skillRelease <= skillReleaseProbability) {
                 for(int i = 0; i < 5; i++) {
                     this.setOnceDamage((int) (this.getDamage() * (1.0 + i * 0.4) * (100 / (person.getDefense() + 100))));
                     person.setHealth(person.getHealth() - this.getOnceDamage());
@@ -48,10 +45,6 @@ class Boss extends Enemy {
                 person.strikeBack(this);
             }
         }
-    }
-
-    public double getDegreeOfWeakening() {
-        return degreeOfWeakening;
     }
 
     public int getSkillReleaseProbability() {
