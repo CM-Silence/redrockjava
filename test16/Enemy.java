@@ -6,7 +6,6 @@ abstract class Enemy extends Person {
     Enemy(String name, double health, double damage, int coin, double defence, double criticalChance) {
         super(name,health,damage,defence,criticalChance);
         this.setHealth(health);
-        this.setCoin(coin);
     }
 
     //抽象攻击方法
@@ -24,8 +23,6 @@ abstract class Enemy extends Person {
     //boss被击败时则游戏胜利
     public void die(Person person) {
         System.out.println(this.getName() + "被" + person.getName() + "击败了!");
-        System.out.println("你从" + this.getName() + "手中获得了" + this.getCoin() + "金币!\n");
-        person.setCoin(person.getCoin() + this.getCoin());
         GetReady.win = true;
     }
 

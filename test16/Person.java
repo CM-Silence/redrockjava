@@ -1,7 +1,6 @@
 package RedRock_Android_Java.test16;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public abstract class Person {
     private String name; //名字
@@ -9,12 +8,10 @@ public abstract class Person {
     private double damage; //攻击力
     private double defense; //防御力
     private double criticalChance; //暴击率
-    private int coin; //金币(被击败者的金币会全部给击败者)
     private double criticalDamageMultiplier = 0.5; //暴伤倍率(目前没有什么装备能增加暴伤,不过不排除以后会有awa)
     private int onceDamage; //单次伤害(用于计算暴击额外伤害)
 
     Random ra = new Random();
-    Scanner sc = new Scanner(System.in);
 
     Person(String name, double health, double damage, double defense, double criticalChance) {
         this.setName(name);
@@ -24,7 +21,7 @@ public abstract class Person {
         this.setCriticalChance(criticalChance);
     }
 
-
+    //各setter方法设为私有(除了setHealth)
     private void setName(String name) {
         this.name = name;
     }
@@ -57,19 +54,12 @@ public abstract class Person {
         }
     }
 
-    public void setCoin(int coin) {
-        this.coin = coin;
-        if(this.coin < 0){
-            this.coin = 0;
-        }
-    }
-
     public void setOnceDamage(int onceDamage){
         this.onceDamage = onceDamage;
     }
 
     //留着有用(如果我还做的话awa)(暴伤倍率可是很强的属性!)
-    public void setCriticalDamageMultiplier(double criticalDamageMultiplier){
+    private void setCriticalDamageMultiplier(double criticalDamageMultiplier){
         this.criticalDamageMultiplier = criticalDamageMultiplier;
     }
 
@@ -91,10 +81,6 @@ public abstract class Person {
 
     public double getCriticalChance() {
         return criticalChance;
-    }
-
-    public int getCoin() {
-        return coin;
     }
 
     public double getCriticalDamageMultiplier(){
