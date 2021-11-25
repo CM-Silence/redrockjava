@@ -5,13 +5,15 @@ import java.util.Scanner;
 public class GetReady {
     Scanner sc = new Scanner(System.in);
     public static boolean win = false; //用于判断游戏是否胜利
+    Hero hero;
+    Boss boss;
     String name; //英雄名
     int round = 1; //回合数
     int initialHealth; //初始生命值
     int initialDamage; //初始攻击力
     int initialDefense; //初始防御力
     int initialCriticalChance; //初始暴击率
-    public Hero ready() {
+    public void ready() {
         //输入英雄属性
         do {
             System.out.println("请输入英雄名称(长度为1-10):");
@@ -54,12 +56,11 @@ public class GetReady {
         } while (initialCriticalChance < 0 || initialCriticalChance > 100);
 
         //我方英雄
-        return new Hero(name, initialHealth, initialDamage, initialDefense, initialCriticalChance);
-    }
-    public void begin(Hero hero){
+        hero = new Hero(name, initialHealth, initialDamage, initialDefense, initialCriticalChance);
         //最终boss(攻击力会随着英雄的生命和防御的提高而提高,且具有10000的初始值,保证能秒杀英雄)
-        Hero hero1 = new Hero(name, initialHealth, initialDamage, initialDefense, initialCriticalChance);
-        Boss boss = new Boss("最终Boss—纳什男爵", 50000, (int) ((hero.getHealth() + 1000) * (100 + hero.getDefense())), 9999, 1200, 50, 70, 80);
+        boss = new Boss("最终Boss—纳什男爵", 50000, (int) ((hero.getHealth() + 1000) * (100 + hero.getDefense())), 9999, 1200, 50, 70, 80);
+    }
+    public void begin(){
         System.out.println("纳什男爵:" + hero.getName() + "!你之前击败了我的手下,但是你的好运到头了!\n这次就让你看看我的真正实力!");
         System.out.println("最终Boss—纳什男爵出现!请你运用智慧与勇气,一鼓作气击败他吧!");
         hero.setCoin(600);
