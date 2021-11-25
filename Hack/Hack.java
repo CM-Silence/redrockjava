@@ -23,9 +23,9 @@ public class Hack {
 
         Class<?> person = Class.forName("RedRock_Android_Java.test16.Person"); //找到Person类
         Class<?> getReady = Class.forName("RedRock_Android_Java.test16.GetReady"); //GetReady类
-        Constructor<?> beginConstructor = getReady.getDeclaredConstructor(); //GetReady类的构造器
-        Object getReadyInstance = beginConstructor.newInstance(); //用构造器创建一个GetReady类的对象
-        Method start = getReady.getDeclaredMethod("begin"); //找到GetReady类的方begin方法
+        Constructor<?> getReadyDeclaredConstructor = getReady.getDeclaredConstructor(); //GetReady类的构造器
+        Object getReadyInstance = getReadyDeclaredConstructor.newInstance(); //用构造器创建一个GetReady类的对象
+        Method begin = getReady.getDeclaredMethod("begin"); //找到GetReady类的方begin方法
         Method ready = getReady.getDeclaredMethod("ready"); //找到GetReady类的方ready方法
         System.out.println("----------------------hack---------------------");
         ready.invoke(getReadyInstance); //调用GetReady类的ready方法
@@ -81,7 +81,7 @@ public class Hack {
             }
         }
         while (true);
-        start.invoke(getReadyInstance); //开始游戏,虐杀boss
+        begin.invoke(getReadyInstance); //开始游戏,虐杀boss
     }
 
     public static double judge(){
