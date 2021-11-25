@@ -54,23 +54,11 @@ public class GetReady {
         } while (initialCriticalChance < 0 || initialCriticalChance > 100);
 
         //我方英雄
-        Hero hero = new Hero(name, initialHealth, initialDamage, initialDefense, initialCriticalChance);
-
-        //暴风之剑
-        Hero.equipment[0] = new Equipment("暴风之剑(需要100金币,+150攻击力)", 100, 150, 0, 0);
-
-        //无尽之刃
-        Hero.equipment[1] = new Equipment("无尽之刃(需要150金币,+250攻击力,+50%暴击率)", 150, 250, 0, 50);
-
-        //锁子甲
-        Hero.equipment[2] = new Equipment("锁子甲(需要100金币,+220防御力)", 100, 0, 220, 0);
-
-        //守护天使
-        Hero.equipment[3] = new Equipment("守护天使(需要650金币,+350防御力,角色死亡后可复活一次,并恢复生命上限30%的血量,每次购买可增加一次复活机会)", 650, 0, 350, 0);
-        return hero;
+        return new Hero(name, initialHealth, initialDamage, initialDefense, initialCriticalChance);
     }
     public void begin(Hero hero){
         //最终boss(攻击力会随着英雄的生命和防御的提高而提高,且具有10000的初始值,保证能秒杀英雄)
+        Hero hero1 = new Hero(name, initialHealth, initialDamage, initialDefense, initialCriticalChance);
         Boss boss = new Boss("最终Boss—纳什男爵", 50000, (int) ((hero.getHealth() + 1000) * (100 + hero.getDefense())), 9999, 1200, 50, 70, 80);
         System.out.println("纳什男爵:" + hero.getName() + "!你之前击败了我的手下,但是你的好运到头了!\n这次就让你看看我的真正实力!");
         System.out.println("最终Boss—纳什男爵出现!请你运用智慧与勇气,一鼓作气击败他吧!");
@@ -79,37 +67,33 @@ public class GetReady {
         outer:while (hero.getHealth() > 0 && !win){
             System.out.println("--------------------第" + round + "回合-------------------");
             String answer;
-            do {
-                System.out.println("请输入序号来选择你要进行的操作:\n1.精神打击(无视目标50%的防御,对目标造成相当于100%攻击力的伤害)\n2.多重打击Pro(连续攻击5次,首次攻击对目标造成相当于50%攻击力的伤害,\n每攻击一次伤害增加30%)\n3.致命一击(对目标造成相当于350%攻击力的伤害)\n4.购买装备(当前拥有金币:" + hero.getCoin() + ")\n5.查看英雄属性和装备\n6.跪地求饶(6分投)");
+            inter:do {
+                System.out.println("请输入序号来选择你要进行的操作:\n1.精神打击(无视目标50%的防御,对目标造成相当于100%攻击力的伤害)\n2.多重打击Pro(连续攻击5次,首次攻击对目标造成相当于50%攻击力的伤害,\n每攻击一次伤害增加30%)\n3.致命一击(对目标造成相当于350%攻击力的伤害)\n4.查看英雄属性和装备\n5.跪地求饶(6分投)");
                 answer = sc.next();
-                if(!answer.equals("1") && !answer.equals("2") && !answer.equals("3") && !answer.equals("4") && !answer.equals("5") && !answer.equals("6")){
-                    System.out.println("请输入合理的序号!");
+                switch (answer) {
+                    case "1" -> {
+                        hero.attack(boss);
+                        break inter;
+                    }
+                    case "2" -> {
+                        hero.multipleHit(boss);
+                        break inter;
+                    }
+                    case "3" -> {
+                        hero.strike(boss);
+                        break inter;
+                    }
+                    case "4" -> {
+                        hero.check();
+                    }
+                    case "5" -> {
+                        hero.setHealth(0);
+                        System.out.println("你投降了!");
+                        break outer;
+                    }
+                    default -> System.out.println("请输入合理的序号!");
                 }
-            }while (!answer.equals("1") && !answer.equals("2") && !answer.equals("3") && !answer.equals("4") && !answer.equals("5") && !answer.equals("6"));
-            switch (answer) {
-                case "1" -> {
-                    hero.attack(boss);
-                }
-                case "2" -> {
-                    hero.multipleHit(boss);
-                }
-                case "3" -> {
-                    hero.strike(boss);
-                }
-                case "4" -> {
-                    hero.shop();
-                    continue;
-                }
-                case "5" -> {
-                    hero.check();
-                    continue;
-                }
-                case "6" -> {
-                    hero.setHealth(0);
-                    System.out.println("你投降了!");
-                    break outer;
-                }
-            }
+            }while (true);
             //玩家攻击完后判断敌方是否已经被全部歼灭(Enemy类的die方法)
             if(win){
                 break;
@@ -117,18 +101,9 @@ public class GetReady {
 
             //敌人轮流攻击英雄并判断英雄是否被击败
             boss.attack(hero);
-            //如果英雄购买了"守护天使"则消耗一次复活机会来复活一次并恢复一定的生命值(守护天使这件装备不会被消耗掉)
             if(hero.getHealth() <= 0){
-                if(Hero.equipment[3].getResurgence() < 1) {
                     hero.die(boss);
                     break;
-                }
-                else {
-                    System.out.println("你受到守护天使的庇护复活了一次!");
-                    Hero.equipment[3].setResurgence(Hero.equipment[3].getResurgence() - 1);
-                    hero.setHealth((int)(initialHealth * 0.3));
-
-                }
             }
             if (boss.getHealth() <= 0) {
                 boss.die(hero);

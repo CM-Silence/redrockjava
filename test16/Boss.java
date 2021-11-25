@@ -18,7 +18,7 @@ class Boss extends Enemy {
     }
 
     @Override
-    public void attack(Player person) {
+    public void attack(Person person) {
         if (this.getHealth() > 0) {
 
             //获取一个随机数,用于判断boss是否会释放技能
@@ -27,9 +27,7 @@ class Boss extends Enemy {
             if (skillRelease <= skillReleaseProbability/5) {
                 this.setOnceDamage((int) (this.getDamage() * 5.0 * (100 / (person.getDefense() + 100))));
                 person.setHealth(person.getHealth() - this.getOnceDamage());
-                System.out.println(this.getName() + "使用*最终审判*对" + person.getName() + "造成了" + this.getOnceDamage() + "点伤害\n并降低了" + person.getName() + this.degreeOfWeakening + "%的防御力!");
-                person.setDefense((int) (person.getDefense() * (100 - degreeOfWeakening) * 0.01));
-                System.out.println(person.getName() + "目前的防御力为:" + person.getDefense());
+                System.out.println(this.getName() + "使用*最终审判*对" + person.getName() + "造成了" + this.getOnceDamage() + "点伤害!");
             }
             else if(skillRelease > skillReleaseProbability/5 && skillRelease <= skillReleaseProbability) {
                 for(int i = 0; i < 5; i++) {
@@ -58,6 +56,13 @@ class Boss extends Enemy {
 
     public int getSkillReleaseProbability() {
         return skillReleaseProbability;
+    }
+
+    @Override
+    public void strikeBack(Person person) {
+        person.setHealth(person.getHealth() - (int) (this.getDamage() * (100 / (person.getDefense() + 100)) * 0.3));
+        System.out.println(this.getName() + "对" + person.getName() + "进行了反击,造成了" + (int) (this.getDamage() * (100 / (person.getDefense() + 100)) * 0.3) + "点伤害!");
+        System.out.println(person.getName() + "目前的生命值为:" + person.getHealth() + "\n");
     }
 }
 

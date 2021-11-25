@@ -16,8 +16,16 @@ public abstract class Person {
     Random ra = new Random();
     Scanner sc = new Scanner(System.in);
 
+    Person(String name, double health, double damage, double defense, double criticalChance) {
+        this.setName(name);
+        this.setHealth(health);
+        this.setDamage(damage);
+        this.setDefense(defense);
+        this.setCriticalChance(criticalChance);
+    }
 
-    public void setName(String name) {
+
+    private void setName(String name) {
         this.name = name;
     }
 
@@ -28,21 +36,21 @@ public abstract class Person {
         }
     }
 
-    public void setDamage(double damage) {
+    private void setDamage(double damage) {
         this.damage = damage;
         if(this.damage < 0){
             this.damage = 0;
         }
     }
 
-    public void setDefense(double defense) {
+    private void setDefense(double defense) {
         this.defense = defense;
         if(this.defense < 0){
             this.defense = 0;
         }
     }
 
-    public void setCriticalChance(double criticalChance) {
+    private void setCriticalChance(double criticalChance) {
         this.criticalChance = criticalChance;
         if(this.criticalChance < 0){
             this.criticalChance = 0;
@@ -98,6 +106,8 @@ public abstract class Person {
     }
 
     public abstract void die(Person person);
+
+    public abstract void strikeBack(Person person);
 
 }
 

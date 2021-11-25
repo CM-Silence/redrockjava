@@ -1,15 +1,11 @@
 package RedRock_Android_Java.test16;
 
 //英雄类
-public class Hero extends Person implements Player{
-    public static Equipment[] equipment = new Equipment[4];  //英雄的装备
+public class Hero extends Person{
 
     Hero(String name, double health, double damage, double defense, double criticalChance) {
-        this.setName(name);
+        super(name,health,damage,defense,criticalChance);
         this.setHealth(health);
-        this.setDamage(damage);
-        this.setDefense(defense);
-        this.setCriticalChance(criticalChance);
     }
 
     //利用接口回调实现的反击机制(造成相当于攻击力30%的伤害且不会触发暴击,不然太强了awa)
@@ -71,52 +67,12 @@ public class Hero extends Person implements Player{
         }
     }
 
-    //购买装备
-    void shop() {
-        int num;
-
-        //判断玩家输入的序号是否合理,如不合理则让玩家重新输入
-        do {
-            System.out.println("您现在拥有的金币为:" + this.getCoin());
-            System.out.println("请输入序号来选择你要购买的装备:");
-            for (int i = 0; i < Hero.equipment.length; i++) {
-                System.out.println((i + 1) + "." + Hero.equipment[i].getName());
-            }
-            num = sc.nextInt();
-            if (num < 1 || num > Hero.equipment.length) {
-                System.out.println("请输入合理的序号!");
-            }
-        } while (num < 1 || num > Hero.equipment.length);
-        if (this.getCoin() >= Hero.equipment[num - 1].getPrice()) {
-            Hero.equipment[num - 1].setAmount(Hero.equipment[num - 1].getAmount() + 1);
-            if (num == 4) {
-                Hero.equipment[num - 1].setResurgence(Hero.equipment[num - 1].getResurgence() + 1);
-            }
-            this.setCoin(this.getCoin() - Hero.equipment[num - 1].getPrice());
-            this.setDamage(this.getDamage() + Hero.equipment[num - 1].getDamage());
-            this.setDefense(this.getDefense() + Hero.equipment[num - 1].getDefense());
-            this.setCriticalChance(this.getCriticalChance() + Hero.equipment[num - 1].getCriticalChance());
-            System.out.println("你购买了" + Hero.equipment[num - 1].getName() + "!\n");
-        } else {
-            System.out.println("你的金币不足以购买这件装备!");
-        }
-
-
-    }
-
     //查看自身属性以及装备
     void check() {
         System.out.println("当前角色生命值为:" + this.getHealth());
         System.out.println("当前角色攻击力为:" + this.getDamage());
         System.out.println("当前角色防御力为:" + this.getDefense());
         System.out.println("当前角色暴击率为:" + this.getCriticalChance());
-        System.out.println("当前角色剩余复活次数为:" + Hero.equipment[3].getResurgence() + "\n");
-        System.out.println("当前拥有装备:");
-        for (int i = 0; i < Hero.equipment.length; i++) {
-            if (Hero.equipment[i].getAmount() > 0) {
-                System.out.println(Hero.equipment[i].getAmount() + "个" + Hero.equipment[i].getName());
-            }
-        }
     }
 
     @Override

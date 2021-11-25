@@ -4,19 +4,16 @@ package RedRock_Android_Java.test16;
 abstract class Enemy extends Person {
 
     Enemy(String name, double health, double damage, int coin, double defence, double criticalChance) {
-        this.setName(name);
+        super(name,health,damage,defence,criticalChance);
         this.setHealth(health);
-        this.setDamage(damage);
         this.setCoin(coin);
-        this.setDefense(defence);
-        this.setCriticalChance(criticalChance);
     }
 
     //抽象攻击方法
-    public abstract void attack(Player person);
+    public abstract void attack(Person person);
 
     //暴击
-    public void critical(Player person) {
+    public void critical(Person person) {
         int critical = ra.nextInt(1, 100);
         if (critical <= getCriticalChance()) {
             person.setHealth(person.getHealth() - this.getOnceDamage() * this.getCriticalDamageMultiplier());
