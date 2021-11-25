@@ -40,6 +40,8 @@ public class Hack {
         damage.setAccessible(true);
         Field defense = person.getDeclaredField("defense");
         defense.setAccessible(true);
+        Field criticalDamageMultiplier = person.getDeclaredField("criticalDamageMultiplier");
+        criticalDamageMultiplier.setAccessible(true);
 
         //取得Person类的私有方法(其实我觉得直接改变量会更方便,不过为了记住这个方法还是写着在这吧awa)
         Method setCriticalChance = person.getDeclaredMethod("setCriticalChance", double.class);
@@ -48,7 +50,7 @@ public class Hack {
         setCriticalChance.setAccessible(true);
 
         outer:do{
-            System.out.println("hack:欢迎使用本修改器,请选择你要修改的内容:\n1.角色生命\n2.角色攻击力\n3.角色防御力\n4.角色暴击率\n5.开启一击必杀模式\n6.开始游戏");
+            System.out.println("hack:欢迎使用本修改器,请选择你要修改的内容:\n1.角色生命\n2.角色攻击力\n3.角色防御力\n4.角色暴击率\n5.角色爆伤倍率\n6.开启一击必杀模式\n7.开始游戏");
             choose = sc.nextLine();
 
             switch (choose){
@@ -69,11 +71,15 @@ public class Hack {
                     setCriticalChance.invoke(obj,judge());
                 }
                 case "5" ->{
+                    System.out.println("hack:当前角色爆伤倍率为:" + criticalDamageMultiplier.get(obj) + "\n请输入你要修改的值:");
+                    criticalDamageMultiplier.set(obj,judge());
+                }
+                case "6" ->{
                     System.out.println("hack:已开启一击必杀模式,请开始游戏吧!");
                     damage.set(obj,99999999);
                     setCriticalChance.invoke(obj,99999999);
                 }
-                case "6" ->{
+                case "7" ->{
                     break outer;
                 }
                 default -> System.out.println("hack:无法识别你的操作!");
@@ -89,8 +95,12 @@ public class Hack {
         double num;
         do {
             if(sc.hasNextDouble()|| sc.hasNextInt()) {
-                num = sc.nextInt();
-                break;
+                try {
+                    num = sc.nextInt();
+                    break;
+                }catch (Exception ignore){
+                    System.out.println("输入的数字过大!");
+                }
             }
             else{
                 sc.next();
