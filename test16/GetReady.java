@@ -63,8 +63,6 @@ public class GetReady {
     public void begin(){
         System.out.println("纳什男爵:" + hero.getName() + "!你之前击败了我的手下,但是你的好运到头了!\n这次就让你看看我的真正实力!");
         System.out.println("最终Boss—纳什男爵出现!请你运用智慧与勇气,一鼓作气击败他吧!");
-        hero.setCoin(600);
-        System.out.println("系统:你获得了600金币!");
         outer:while (hero.getHealth() > 0 && !win){
             System.out.println("--------------------第" + round + "回合-------------------");
             String answer;
