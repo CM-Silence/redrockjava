@@ -182,6 +182,6 @@ public class Calculator {
         }
 
         formula = finalCalculate(formula); //所有括号都算完后再进行最后的计算
-        System.out.println("= " + formula); //输出计算结果
+        System.out.println("= " + String.format("%.3f",Double.parseDouble(formula))); //输出计算结果(保留三位小数)
     }
 }
