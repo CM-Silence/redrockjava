@@ -32,6 +32,8 @@ public class Hack {
         Field hero = getReady.getDeclaredField("hero"); //找到GetReady类的hero对象
         hero.setAccessible(true); //用setAccessible(true)来跳过私有检测(虽然hero本来也不是私有的)
         Object obj = hero.get(getReadyInstance); //得到hero变量所对应的的对象并将其赋值给obj
+        Field win = getReady.getDeclaredField("win"); //找到GetReady类的静态变量win
+        win.setAccessible(true);
 
         //取得Person类的各个成员变量并用setAccessible(true)来跳过私有检测
         Field health = person.getDeclaredField("health");
@@ -50,8 +52,8 @@ public class Hack {
         setCriticalChance.setAccessible(true);
 
         outer:do{
-            System.out.println("hack:欢迎使用本修改器,请选择你要修改的内容:\n1.角色生命\n2.角色攻击力\n3.角色防御力\n4.角色暴击率\n5.角色爆伤倍率\n6.开启一击必杀模式\n7.开始游戏");
-            choose = sc.nextLine();
+            System.out.println("hack:欢迎使用本修改器,请选择你要修改的内容:\n1.角色生命\n2.角色攻击力\n3.角色防御力\n4.角色暴击率\n5.角色爆伤倍率\n6.开启一击必杀模式\n7.一键胜利(打都不用打)\n8.开始游戏");
+            choose = sc.next();
 
             switch (choose){
                 case "1" ->{
@@ -80,6 +82,10 @@ public class Hack {
                     setCriticalChance.invoke(obj,99999999);
                 }
                 case "7" ->{
+                    win.set(getReadyInstance,true); //直接把判断是否胜利的静态变量改为true,游戏一开始就会直接胜利
+                    break outer;
+                }
+                case "8" ->{
                     break outer;
                 }
                 default -> System.out.println("hack:无法识别你的操作!");
@@ -99,7 +105,8 @@ public class Hack {
                     num = sc.nextInt();
                     break;
                 }catch (Exception ignore){
-                    System.out.println("输入的数字过大!");
+                    sc.next();
+                    System.out.println("输入的数字过大!请重新输入!");
                 }
             }
             else{
