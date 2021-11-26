@@ -101,7 +101,7 @@ public class Calculator {
             }
         }
         if(formula.endsWith(".0")){
-            formula = formula.replaceAll("\\.0",""); //如果最终结果不是小数,就去掉后面的".0"
+            formula = formula.replaceAll("\\.0",""); //如果结果不是小数,就去掉后面的".0"(虽然后面是保留三位小数输出。。。)
         }
         return formula;
     }

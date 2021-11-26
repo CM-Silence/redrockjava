@@ -31,9 +31,10 @@ public class Test15 {
                 //我本不想报错,用户可不希望看到一堆红字报出来awa
                 //System.out.println("输入的算式格式有误,请再次输入!\n例子:[-6*(5+4)/2]^3");
                 try {
-                    throw new FormulaErrorException("输入的算式格式有误,请再次输入!\n例子:[-6*(5+4)/2]^3");
+                    throw new FormulaErrorException("输入的算式格式有误,请再次输入!");
                 }catch (FormulaErrorException e){
                     e.printStackTrace();
+                    System.out.println("请再输一次!例子:[-6*(5+4)/2]^3");
                 }
             }
             else{
