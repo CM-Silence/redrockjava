@@ -18,12 +18,12 @@ public class Calculator {
         //先算幂次
         for(int i = 0; i < sym.length; i++){
             if(sym[i].equals("^")){
-                num[i] = Double.toString(Math.pow(Double.parseDouble(num[i-1]), Double.parseDouble(num[i])));
+                num[i] = String.format("%.5f",Math.pow(Double.parseDouble(num[i-1]), Double.parseDouble(num[i]))); //先保留五位小数,确保计算的精确度
                 num[i-1] = "";
                 sym[i] = "";
             }
             else if(sym[i].equals("^-")){ //例子:2^-1 = 1 / 2^1 (取倒数)
-                num[i] = Double.toString(1 / Math.pow(Double.parseDouble(num[i-1]), Double.parseDouble(num[i])));
+                num[i] = String.format("%.5f",1 / Math.pow(Double.parseDouble(num[i-1]), Double.parseDouble(num[i])));
                 num[i-1] = "";
                 sym[i] = "";
             }
@@ -46,22 +46,22 @@ public class Calculator {
             }
             switch (sym[i]) {
                 case "*" -> {
-                    num[i] = Double.toString(Double.parseDouble(num[i - 1]) * Double.parseDouble(num[i]));
+                    num[i] = String.format("%.5f",Double.parseDouble(num[i - 1]) * Double.parseDouble(num[i]));
                     num[i - 1] = "";
                     sym[i] = "";
                 }
                 case "/" -> {
-                    num[i] = Double.toString(Double.parseDouble(num[i - 1]) / Double.parseDouble(num[i]));
+                    num[i] = String.format("%.5f",Double.parseDouble(num[i - 1]) / Double.parseDouble(num[i]));
                     num[i - 1] = "";
                     sym[i] = "";
                 }
                 case "*-" -> { //例子: 2*-1 = -1 * 2*1 (前面乘个-1就完事)
-                    num[i] = Double.toString(-1 * Double.parseDouble(num[i - 1]) * Double.parseDouble(num[i]));
+                    num[i] = String.format("%.5f",-1 * Double.parseDouble(num[i - 1]) * Double.parseDouble(num[i]));
                     num[i - 1] = "";
                     sym[i] = "";
                 }
                 case "/-" -> { //例子: 2/-1 = -1 * 2/1 (前面乘个-1就完事)
-                    num[i] = Double.toString(-1 * Double.parseDouble(num[i - 1]) / Double.parseDouble(num[i]));
+                    num[i] = String.format("%.5f",-1 * Double.parseDouble(num[i - 1]) / Double.parseDouble(num[i]));
                     num[i - 1] = "";
                     sym[i] = "";
                 }
@@ -84,12 +84,12 @@ public class Calculator {
                 }
             }
             if(sym[i].equals("+")||sym[i].equals("--")){ //负负得正
-                num[temp2] = Double.toString(Double.parseDouble(num[temp1]) + Double.parseDouble(num[temp2]));
+                num[temp2] = String.format("%.5f",Double.parseDouble(num[temp1]) + Double.parseDouble(num[temp2]));
                 num[temp1] = "";
                 sym[i] = "";
             }
             else if(sym[i].equals("-")||sym[i].equals("+-")){ //一正一负得负
-                num[temp2] = Double.toString(Double.parseDouble(num[temp1]) - Double.parseDouble(num[temp2]));
+                num[temp2] = String.format("%.5f",Double.parseDouble(num[temp1]) - Double.parseDouble(num[temp2]));
                 num[temp1] = "";
                 sym[i] = "";
             }
@@ -100,9 +100,7 @@ public class Calculator {
                 break;
             }
         }
-        if(formula.endsWith(".0")){
-            formula = formula.replaceAll("\\.0",""); //如果结果不是小数,就去掉后面的".0"(虽然后面是保留三位小数输出。。。)
-        }
+        formula = formula.replaceAll("\\.0",""); //如果结果不是小数,就去掉后面的".0"(虽然后面是保留三位小数输出。。。)
         return formula;
     }
 
@@ -148,7 +146,8 @@ public class Calculator {
             }
             System.out.println("= " + formula);  //输出一次算式
         }
-
+        temp1 = 0; //算完小括号后重置
+        temp2 = 0;
         //再算中括号(方法与计算小括号相同,不再赘述)
         while(formula.contains("[")) {
             char[] element = formula.toCharArray();
