@@ -75,7 +75,7 @@ class Hero extends Person implements Player{
                 System.out.println("请输入合理的序号!");
             }
         } while (num < 1 || num > GetReady.enemies.length);
-        onceDamage = (int) (this.getDamage() * (100 / (GetReady.enemies[enemyNum].getDefense() + 100) * 0.8));
+        onceDamage = (int) (this.getDamage() * (100 / (GetReady.enemies[num - 1].getDefense() + 100) * 0.8));
         GetReady.enemies[num - 1].setHealth(GetReady.enemies[num - 1].getHealth() - onceDamage);
         System.out.println(this.getName() + "使用精准打击对" + GetReady.enemies[num - 1].getName() + "造成了" + onceDamage + "点伤害!");
         this.critical(GetReady.enemies[num - 1]);
