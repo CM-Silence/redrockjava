@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test12;
+package redrockjava.test12;
 
 //work3 level3
 //国王阅兵(回调,匿名类,lambda表达式)

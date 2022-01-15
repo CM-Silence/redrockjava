@@ -1,10 +1,10 @@
-package RedRock_Android_Java.test14;
+package redrockjava.test14;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import static RedRock_Android_Java.test14.Io.*;
+import static redrockjava.test14.Io.*;
 
 //work4 level2
 //文件读写器

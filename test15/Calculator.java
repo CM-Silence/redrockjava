@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test15;
+package redrockjava.test15;
 
 public class Calculator {
     public static int temp1; //用于记录num数组中不为""的索引或者记录算式里面的括号的索引

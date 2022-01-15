@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test17;
+package redrockjava.test17;
 
 //创建一个Student类装进列表中
 public class Student {

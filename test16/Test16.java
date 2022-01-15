@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test16;
+package redrockjava.test16;
 
 //work4 level4
 //回合制小游戏修改版(回调,面向对象,抽象类,反射)

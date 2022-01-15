@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test10;
+package redrockjava.test10;
 
 public interface Player {
     void strikeBack(Person person); //反击方法

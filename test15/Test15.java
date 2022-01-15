@@ -1,6 +1,6 @@
-package RedRock_Android_Java.test15;
+package redrockjava.test15;
 import java.util.Scanner;
-import static RedRock_Android_Java.test15.Calculator.*;
+import static redrockjava.test15.Calculator.*;
 
 //work4 level3
 //简易计算器(简易个鬼,头都秃了)

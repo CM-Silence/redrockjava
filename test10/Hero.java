@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test10;
+package redrockjava.test10;
 
 //英雄类
 class Hero extends Person implements Player{

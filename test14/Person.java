@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test14;
+package redrockjava.test14;
 
 import java.io.Serializable;
 

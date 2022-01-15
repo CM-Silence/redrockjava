@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test3;
+package redrockjava.test3;
 
 import java.util.Objects;
 import java.util.Scanner;

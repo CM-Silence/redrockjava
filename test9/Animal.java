@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test9;
+package redrockjava.test9;
 
 class Animal {
     private double tall;

@@ -1,4 +1,4 @@
-package RedRock_Android_Java.hack;
+package redrockjava.hack;
 import java.lang.reflect.*;
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test10;
+package redrockjava.test10;
 
 //敌方法师类(无视防御的攻击方法,因为我不想做法抗了awa)
 class Magician extends Enemy {

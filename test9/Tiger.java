@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test9;
+package redrockjava.test9;
 
 class Tiger extends Animal {
     Tiger(double tall, double wide, int weigh) {

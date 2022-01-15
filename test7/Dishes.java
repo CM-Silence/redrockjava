@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test7;
+package redrockjava.test7;
 
 //菜品类
 class Dishes {

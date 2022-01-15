@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test13;
+package redrockjava.test13;
 
 public class DodgeLv1 extends Dodge{
 

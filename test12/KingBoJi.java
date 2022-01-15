@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test12;
+package redrockjava.test12;
 
 public class KingBoJi extends King{
     //通过构造方法先给国王两个士兵

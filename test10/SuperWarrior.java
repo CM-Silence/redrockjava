@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test10;
+package redrockjava.test10;
 
 import java.util.Random;
 

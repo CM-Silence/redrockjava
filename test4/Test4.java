@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test4;
+package redrockjava.test4;
 
 //work1 level1
 //打印乘法口诀表和五角星

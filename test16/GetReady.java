@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test16;
+package redrockjava.test16;
 
 import java.util.Scanner;
 

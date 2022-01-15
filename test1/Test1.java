@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test1;
+package redrockjava.test1;
 import java.util.Scanner;
 
 //work0 level1

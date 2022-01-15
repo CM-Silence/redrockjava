@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test6;
+package redrockjava.test6;
 
 import java.util.Scanner;
 import java.util.Random;

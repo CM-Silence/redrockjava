@@ -1,4 +1,4 @@
-package RedRock_Android_Java.test2;
+package redrockjava.test2;
 
 import java.util.Scanner;
 import java.math.BigDecimal;
