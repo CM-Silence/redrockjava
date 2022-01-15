@@ -21,8 +21,8 @@ public class Hack {
         }
         Class<?> person = Class.forName(className);*/
 
-        Class<?> person = Class.forName("RedRock_Android_Java.test16.Person"); //找到Person类
-        Class<?> getReady = Class.forName("RedRock_Android_Java.test16.GetReady"); //GetReady类
+        Class<?> person = Class.forName("redrockjava.test16.Person"); //找到Person类
+        Class<?> getReady = Class.forName("redrockjava.test16.GetReady"); //GetReady类
         Constructor<?> getReadyDeclaredConstructor = getReady.getDeclaredConstructor(); //GetReady类的构造器
         Object getReadyInstance = getReadyDeclaredConstructor.newInstance(); //用构造器创建一个GetReady类的对象
         Method begin = getReady.getDeclaredMethod("begin"); //找到GetReady类的方begin方法
