@@ -1,5 +1,6 @@
 package redrockjava.test2;
 
+import java.math.RoundingMode;
 import java.util.Scanner;
 import java.math.BigDecimal;
 
@@ -50,7 +51,7 @@ public class Test2 {
             BigDecimal num3 = new BigDecimal(Double.toString(num1));
             BigDecimal num4 = new BigDecimal(Double.toString(num2));
             System.out.println("没用BigDecimal类中方法计算出的中奖概率为:" + num2 / num1);
-            System.out.println("用了BigDecimal类中方法计算出的中奖概率为:" + num4.divide(num3, 20, BigDecimal.ROUND_HALF_UP));
+            System.out.println("用了BigDecimal类中方法计算出的中奖概率为:" + num4.divide(num3, 20, RoundingMode.HALF_UP));
 
             do {
                 System.out.println("要再玩一次吗?yes/no");

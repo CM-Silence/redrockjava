@@ -11,6 +11,9 @@ public class Test4 {
 
                 //输出乘法口诀表
                 System.out.print(num2 + "*" + num1 + "=" + num1*num2 + "   ");
+                if(num1*num2 < 10){
+                    System.out.print(" "); //结果小于10补一个空格,保证口诀表的工整
+                }
             }
             num1++;
             num2 = 1;
