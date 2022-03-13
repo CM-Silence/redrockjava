@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Test1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String choose = "";
+        String choose;
         int a; //平时成绩
         int b; //期中成绩
         int c; //期末成绩

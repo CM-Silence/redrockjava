@@ -3,9 +3,9 @@ package redrockjava.test7;
 //菜品类
 class Dishes {
     //封装菜品类的属性
-    private String name1;
-    private int price;
-    private int number;
+    private final String name1;
+    private final int price;
+    private final int number;
     private int amount = 0;
 
     //设置菜品的属性

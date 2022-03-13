@@ -5,7 +5,7 @@ import java.util.Scanner;
 //餐厅类
 class Restaurant {
     //封装餐厅类的属性
-    private String name2;
+    private final String name2;
     private static int sum = 0;
     Scanner sc = new Scanner(System.in);
 
@@ -27,30 +27,15 @@ class Restaurant {
             String number = sc.nextLine();
 
             //以空格为界将字符串拆分为字符串数组
-            String num[] = number.split(" ");
+            String[] num = number.split(" ");
 
-            for (int i = 0; i < num.length; i++) {
-                switch (num[i]) {
-                    case "1": {
-                        Test7.dish[0].setter(1);
-                        break;
-                    }
-                    case "2": {
-                        Test7.dish[1].setter(1);
-                        break;
-                    }
-                    case "3": {
-                        Test7.dish[2].setter(1);
-                        break;
-                    }
-                    case "4": {
-                        Test7.dish[3].setter(1);
-                        break;
-                    }
-                    case "5": {
-                        Test7.dish[4].setter(1);
-                        break;
-                    }
+            for (String s : num) {
+                switch (s) {
+                    case "1" -> Test7.dish[0].setter(1);
+                    case "2" -> Test7.dish[1].setter(1);
+                    case "3" -> Test7.dish[2].setter(1);
+                    case "4" -> Test7.dish[3].setter(1);
+                    case "5" -> Test7.dish[4].setter(1);
                 }
             }
             this.list();

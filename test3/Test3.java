@@ -148,9 +148,7 @@ public class Test3 {
                     break main; //退出程序
                 }
                 //输入有误
-                default -> {
-                    System.out.println("请输入在1-5之间的五个数字!");
-                }
+                default -> System.out.println("请输入在1-5之间的五个数字!");
             }
         }while(true);
     }

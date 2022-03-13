@@ -18,8 +18,8 @@ public class Test7 {
         dish[4] = new Dishes("干饭王特惠套餐",233,5);
 
         res.welcome();
-        for(int i = 0; i<dish.length; i++){
-            dish[i].tell();
+        for (Dishes dishes : dish) {
+            dishes.tell();
         }
         res.choose();
     }

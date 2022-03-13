@@ -22,6 +22,15 @@ public class Test6 {
         for(int j = 0; j < row; j++){
             for(int k = 0; k < column; k++){
                 System.out.print(i[j][k] + "  ");
+
+                //补上空格,让矩阵看起来更整齐
+                if(i[j][k] >= 10 && i[j][k] < 100){
+                    System.out.print(" ");
+                }
+                else if(i[j][k] < 10){
+                    System.out.print("  ");
+                }
+
             }
             System.out.println();
         }
